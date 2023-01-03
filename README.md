@@ -2,6 +2,13 @@
 
 Project web streamer to stream image from USB Cam. Website show some status, which are updating over the time in loop and several buttons for controls features main application.
 
+## Libraries used:
+```
+cv2
+numpy
+flask
+```
+
 <img
   src="/doc/example_work.jpg"
   alt="pic1"
