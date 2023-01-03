@@ -1,0 +1,171 @@
+body {
+    background-color: #444;
+}
+
+.column0 {
+    width: 100%;
+    padding: 10px;
+}
+
+.column2 {
+    width: 100%;
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+.column {
+    float: left;
+    width: 42%;
+    padding: 10px;
+}
+.second_column{
+    float: left;
+    width: 40%;
+}
+
+.column_text_main {
+    float: left;
+    width: 50%;
+    padding: 1px;
+}
+
+.column_val_main {
+    float: left;
+    width: 18%;
+    padding: 1px;
+}
+
+.column_text_add {
+    float: 7%;
+    padding: 1px;
+}
+
+.column_video {
+    float: left;
+    width: 55%;
+    padding: 10px;
+}
+
+h1 {
+    font-size: 30px;
+    vertical-align:middle;
+}
+
+h6 {
+    font-size: 12px;
+    vertical-align:middle;
+    margin: 3px;
+    height: 13px; 
+    font:  arial, sans-serif;
+    color: black;
+}
+
+h5 {
+    font-size: 12px;
+    text-align:right;
+    margin: 3px;
+    height: 13px; 
+    font:  arial, sans-serif;
+    color: #8B0000;
+}
+
+h4 {
+    font-size: 12px;
+    vertical-align:middle;
+    margin: 3px;
+    height: 13px; 
+    color: black;
+    font-style: italic;
+}
+
+
+h2 {
+    color: white;
+    font-size: 18px;
+    vertical-align:middle;
+}
+
+h3 {
+    font-size: 12px;
+    vertical-align:middle;
+    text-align: center;
+    margin: 3px;
+    height: 13px; 
+    color: black;
+    font-style: italic;
+}
+
+.row:after {
+    content: "";
+    display: table;;
+    clear: both;
+}
+
+.wrapper22 {
+    color: #444;
+    border-style: solid;
+    border-color: gray;
+    border-radius: 5px;
+    border-width: 1px;
+    padding: 5px;
+}
+
+.wrapper {
+    color: #444;
+    border-style: solid;
+    border-color: gray;
+    border-radius: 5px;
+    border-width: 1px;
+    padding: 5px;
+}
+
+.box {
+    border-radius: 5px;
+    vertical-align:middle;
+    padding-bottom: 5px;
+    margin: 10px;
+    background-color: none;
+}
+
+.box_ {
+    border-radius: 5px;
+    vertical-align:middle;
+    padding: 1px;
+    margin: 10px;
+    background-color: #D3D3D3;
+}
+
+.true {
+    background-color: rgb(4, 121, 68);
+}
+
+.false {
+    background-color: #555
+}
+
+.header {
+    padding: 2px;
+    padding-left: 5%;
+    background: MediumSeaGreen;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.my_img {
+    position: absolute;
+    top: 40px;
+    right: 30px;
+}
+
+.my_clock_css {
+    position: absolute;
+    top: 130px;
+    right: 30px;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+    width: 100px;
+    outline: none;
+    border-radius: 5px;
+}

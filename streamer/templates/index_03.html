@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+  </head>
+
+
+  <body>
+    <div class="header">
+      <h1 class="title">STREAMER</h1>
+      <h2 class="tit">Preview camera</h2>
+            <div class="my_img">
+        <img src="{{ url_for('static', filename='img/camera_1.jpg') }}" alt="no picture">
+
+      </div>
+    </div>
+    <div class="row">
+        <div class ="column_video">
+            <img src="{{ url_for('video') }}" width="90%"/>
+        </div>
+    
+        <div class="second_column"> 
+            <h2>Status module</h2>
+            <div class="my_clock_css"> 
+              <span id="clock1"> </span>
+            </div>
+            <div class="wrapper22">
+              <div class = "column_text_main">
+                  {%for i in range(0, len_obj)%}
+                      <div class="box_">
+                          <h6>{{status_name[i]}}</h6>
+                      </div>
+                  {%endfor%}    
+              </div>
+              <div class = "column_val_main">
+                  {%for i in range(0, len_obj)%}
+                      <div class="box_">
+                          <h5> <span id="{{status_name[i]}}"> </span> </h5>
+                      </div>
+                  {%endfor%}    
+              </div>
+              <div class = "column_text_add">
+                  {%for i in range(0, len_obj)%}
+                      <div class="box_">
+                          {%if status_add_inf[i] != " "%}
+                              <h4> {{status_add_inf[i]}}</h4>
+                          {%else%}
+                              <h4>&nbsp;</h4>
+                          {%endif%}
+                      </div>
+
+                  {%endfor%}    
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <script type='text/javascript'>
+
+        var python_array = '{{ status_name|tojson }}';
+        var someJavaScriptVar = JSON.parse(python_array)
+        var arrayLength = someJavaScriptVar.length;
+
+        console.log(someJavaScriptVar);
+        console.log(someJavaScriptVar[0]);
+        console.log(someJavaScriptVar[1]);
+
+        function callme(){
+        var networkPromise = fetch('/read_status')
+        .then(response => response.json())
+        .then(data => {
+            for (var i = 0; i < arrayLength; i++) {
+                document.getElementById(someJavaScriptVar[i]).innerHTML = data[someJavaScriptVar[i]];
+            }
+        });;
+
+        var timeOutPromise = new Promise(function(resolve, reject) {
+        setTimeout(resolve, 50, 'Timeout Done');
+        });
+
+        Promise.all(
+        [networkPromise, timeOutPromise]).then(function(values) {
+        console.log("Atleast 2 secs + TTL (Network/server)");
+        //Repeat
+        callme();
+        });
+        }
+        callme();
+
+        function my_clock(){
+        var networkPromise = fetch('/clock')
+        .then(response => response.json())
+        .then(data => {
+            var actual_time = data["time_actual"]
+            document.getElementById("clock1").innerHTML = actual_time;  
+        });;
+        
+        var timeOutPromise = new Promise(function(resolve, reject) {
+        setTimeout(resolve, 50, 'Timeout Done');
+        });
+
+        Promise.all(
+        [networkPromise, timeOutPromise]).then(function(values) {
+        console.log("Clock Atleast 2 secs + TTL (Network/server)");
+        //Repeat
+        my_clock();
+        });
+        }
+        my_clock();
+    </script>
+
+    </body>
+    
+</html>

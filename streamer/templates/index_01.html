@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">    
+  </head>
+
+  <body>
+    <div class="header">
+      <h1 class="title">STREAMER</h1>
+      <h2 class="tit">Preview camera</h2>
+      <div class="my_img">
+        <img src="{{ url_for('static', filename='img/camera_1.jpg') }}" alt="no picture">
+      </div>
+    </div>
+    <div class="row">
+      <div class="my_clock_css"> 
+        <span id="clock1"> </span>
+      </div>
+      <div class ="column0">
+        <div class ="column2">
+          <img src="{{ url_for('video') }}" width=100%/>
+        </div>
+      </div>
+    </div>
+
+    <script type='text/javascript'>
+
+      function my_clock(){
+      var networkPromise = fetch('/clock')
+      .then(response => response.json())
+      .then(data => {
+          var actual_time = data["time_actual"]
+          document.getElementById("clock1").innerHTML = actual_time;  
+      });;
+      
+      var timeOutPromise = new Promise(function(resolve, reject) {
+      setTimeout(resolve, 50, 'Timeout Done');
+      });
+
+      Promise.all(
+      [networkPromise, timeOutPromise]).then(function(values) {
+      console.log("Clock Atleast 2 secs + TTL (Network/server)");
+      //Repeat
+      my_clock();
+      });
+      }
+      my_clock();
+
+    </script>
+
+  </body>
+    
+</html>
